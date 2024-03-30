@@ -1,10 +1,12 @@
-const fs = require('fs').promises
+import fs1 from 'fs'
 
-class ProductManager {
+const fs=fs1.promises
+
+export default class ProductManager {
   constructor() {
     this.products = [];
     this.id = 0;
-    this.PATH = './products.JSON'
+    this.PATH = './data/products.JSON'
   }
 
   /**
@@ -81,56 +83,55 @@ class ProductManager {
   };
 }
 
-(async () => {
-  let productManager = new ProductManager();
+  // let productManager = new ProductManager();
 
-  await productManager.addProduct(
-    "Toalla",
-    "Sirve para secarse",
-    20,
-    "Ruta de Img",
-    "H2B1",
-    10
-  );
-  await productManager.addProduct("Toalla de manos", 20, "Ruta de Img", "H2B1", 10);
-  await productManager.addProduct(
-    "Mesa",
-    "Sirve para Comer",
-    100,
-    "Ruta de Img",
-    "H4F1",
-    80
-  );
-  console.log(await productManager.getProducts());
-  await productManager.addProduct(
-    "Mesa",
-    "Sirve para Comer",
-    100,
-    "Ruta de Img",
-    "H4F1",
-    "80"
-  );
-  await productManager.getProductsById(2);
-  await productManager.getProductsById(3);
-  await productManager.deleteProduct(2);
-  console.log(await productManager.getProducts());
-  await productManager.addProduct(
-    "Mesa",
-    "Sirve para Comer",
-    100,
-    "Ruta de Img",
-    "H4F1",
-    80
-  );
-  await productManager.updateProduct({
-    id:1,
-    title: "mesa",
-    description: "Donde apoyar los platos y vasos",
-    price: 3000,
-    thumbnail: "No disponible",
-    code: "H300",
-    stock: 22,
-});
-console.log(await productManager.getProducts());
+//   await productManager.addProduct(
+//     "Toalla",
+//     "Sirve para secarse",
+//     20,
+//     "Ruta de Img",
+//     "H2B1",
+//     10
+//   );
+//   await productManager.addProduct("Toalla de manos", 20, "Ruta de Img", "H2B1", 10);
+//   await productManager.addProduct(
+//     "Mesa",
+//     "Sirve para Comer",
+//     100,
+//     "Ruta de Img",
+//     "H4F1",
+//     80
+//   );
+//   console.log(await productManager.getProducts());
+//   await productManager.addProduct(
+//     "Mesa",
+//     "Sirve para Comer",
+//     100,
+//     "Ruta de Img",
+//     "H4F1",
+//     "80"
+//   );
+//   await productManager.getProductsById(2);
+//   await productManager.getProductsById(3);
+//   await productManager.deleteProduct(2);
+//   console.log(await productManager.getProducts());
+//   await productManager.addProduct(
+//     "Mesa",
+//     "Sirve para Comer",
+//     100,
+//     "Ruta de Img",
+//     "H4F1",
+//     80
+//   );
+//   await productManager.updateProduct({
+//     id:1,
+//     title: "mesa",
+//     description: "Donde apoyar los platos y vasos",
+//     price: 3000,
+//     thumbnail: "No disponible",
+//     code: "H300",
+//     stock: 22,
+// });
+// console.log(await productManager.getProducts());
 
-})();
+// })();

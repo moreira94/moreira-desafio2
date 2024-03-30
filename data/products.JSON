@@ -1,0 +1,149 @@
+[
+	{
+		"title": "Mesa",
+		"description": "Donde apoyar los platos y vasos",
+		"price": 3000,
+		"thumbnail": "No disponible",
+		"code": "H300",
+		"stock": 22,
+		"id": 1
+
+	},
+	{
+		"title": "Silla",
+		"description": "Sirve para sentarse a la mesa",
+		"price": 100,
+		"thumbnail": "Ruta de Img",
+		"code": "M300",
+		"stock": 80,
+		"id": 2
+	},
+	{
+		"title": "Sillon",
+		"description": "Sirve para sentarse comodamente",
+		"price": 1000,
+		"thumbnail": "Ruta de Img",
+		"code": "H1N1",
+		"stock": 60,
+		"id": 3
+	},
+	{
+		"title": "Tabla",
+		"description": "Sirve para cortar las cosas sin dañar los muebles",
+		"price": 12000,
+		"thumbnail": "Ruta de Img",
+		"code": "B00B",
+		"stock": 30,
+		"id": 6
+	},
+	{
+		"title": "Televisor",
+		"description": "Sirve para ver programas",
+		"price": 7880,
+		"thumbnail": "Ruta de Img",
+		"code": "PU7A",
+		"stock": 44,
+		"id": 7
+	},
+	{
+		"title": "Atril",
+		"description": "Sirve para pintar",
+		"price": 5800,
+		"thumbnail": "Ruta de Img",
+		"code": "P9U8",
+		"stock": 22,
+		"id": 8
+	},
+	{
+		"title": "Cuadro",
+		"description": "Sirve para contemplar",
+		"price": 690,
+		"thumbnail": "Ruta de Img",
+		"code": "C3PO",
+		"stock": 11,
+		"id": 9
+	},
+	{
+		"title": "Puerta",
+		"description": "Sirve para ingresar al cuarto",
+		"price": 11000,
+		"thumbnail": "Ruta de Img",
+		"code": "R2D2",
+		"stock": 10,
+		"id": 10
+	}
+	,
+	{
+		"title": "Ventana",
+		"description": "Sirve para permitir la ventilación",
+		"price": 5400,
+		"thumbnail": "Ruta de Img",
+		"code": "D2F2",
+		"stock": 59,
+		"id": 11
+	},
+	{
+		"title": "Cubiertos",
+		"description": "Sirve para cortar la comida",
+		"price": 2300,
+		"thumbnail": "Ruta de Img",
+		"code": "NH78",
+		"stock": 12,
+		"id": 12
+	},
+	{
+		"title": "Heladera",
+		"description": "Sirve para mantener frías las bebidas",
+		"price": 230,
+		"thumbnail": "Ruta de Img",
+		"code": "L6HG",
+		"stock": 34,
+		"id": 13
+	},
+	{
+		"title": "Lavarropas",
+		"description": "Sirve para lavar las prendas",
+		"price": 21000,
+		"thumbnail": "Ruta de Img",
+		"code": "L4F1",
+		"stock": 22,
+		"id": 15
+	}
+	,
+	{
+		"title": "Parlante",
+		"description": "Sirve para escuchar música",
+		"price": 14600,
+		"thumbnail": "Ruta de Img",
+		"code": "HP4F1",
+		"stock": 10,
+		"id": 16
+	},
+	{
+		"title": "Estante",
+		"description": "Sirve para apoyar cosas",
+		"price": 300,
+		"thumbnail": "Ruta de Img",
+		"code": "M4F1",
+		"stock": 67,
+		"id": 17
+	},
+	{
+		"title": "Cacerola",
+		"description": "Sirve para cocinar",
+		"price": 890,
+		"thumbnail": "Ruta de Img",
+		"code": "H4R1",
+		"stock": 98,
+		"id": 18
+	},
+	{
+		"title": "Biblioteca",
+		"description": "Sirve para guardar libros",
+		"price": 100000,
+		"thumbnail": "Ruta de Img",
+		"code": "H4F4",
+		"stock": 34,
+		"id": 19
+	}
+]
