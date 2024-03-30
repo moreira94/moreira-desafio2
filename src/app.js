@@ -19,7 +19,7 @@ app.get('/products', (req, res) => {
 app.get('/products/:pid', (req, res) => {
     const { pid } = req.params
     const productById = products.find(product => product.id === parseInt(pid))
-    if (!productById) return res.send('El producto con el id seleccionado no existe');
+    if (!productById) return res.send(`El producto con el id ${pid} no existe`);
 
     res.send(productById)
     console.log(productById);
