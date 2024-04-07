@@ -5,8 +5,8 @@ const fs=fs1.promises
 export default class ProductManager {
   constructor() {
     this.products = [];
-    this.id = 0;
     this.PATH = './data/products.JSON'
+    this.id = 0;
   }
 
   /**
@@ -19,8 +19,23 @@ export default class ProductManager {
    * @param {Number} stock
    */
 
+  jsonSave = async (arrayAGuardar) => {
+    return await fs.writeFile(this.PATH, JSON.stringify(arrayAGuardar), "utf8"  )
+  }
+
+  getProducts = async () => {
+    const data = await fs.readFile(this.PATH, "utf8");
+    try {
+      const products = JSON.parse(data);
+      return products;
+    } catch (error) {
+      return [];
+    }
+  };
+
   addProduct = async (title, description, price, thumbnail, code, stock) => {
     try {
+      let products = await this.getProducts();
       let fileExists = await fs.stat(this.PATH);
       if (!fileExists) {
         await fs.writeFile(this.PATH, JSON.stringify([]));
@@ -28,13 +43,17 @@ export default class ProductManager {
     if (!title || !description || !price || !thumbnail || !code || !stock) {
       return await console.log("Asegurate de incluir todas las propiedades en el objeto!");
     } 
-    if (this.products.some(product => product.code === code)) {
+    
+    if (products.some(product => product.code === code)) {
       return await console.log("Este código de producto ya existe");
     }
-      this.id++;
+      let iDGenerator = products.at(-1).id;
+      this.id = iDGenerator+1;
       let nuevoProducto = { title, description, price, thumbnail, code, stock, id:this.id };
-      this.products.push(nuevoProducto);
-      await fs.writeFile('./products.JSON', JSON.stringify(this.products), 'utf-8' )
+      // this.products.push(nuevoProducto);
+      // await fs.writeFile('./products.JSON', JSON.stringify(this.products), 'utf-8' )
+      const arrayModificado = [...products, nuevoProducto];
+      this.jsonSave(arrayModificado);
       console.log("Se agrego el siguiente producto: ", nuevoProducto);
     }
       catch (error) {
@@ -44,19 +63,8 @@ export default class ProductManager {
     
   };
 
-  getProducts = async () => {
-    let data = await fs.readFile(this.PATH, "utf8");
-    try {
-      const products = JSON.parse(data);
-      return products;
-    } catch (error) {
-      return [];
-    }
-  };
-
   async getProductsById(id) {
-    const data = await fs.readFile(this.PATH, 'utf-8');
-    const products = JSON.parse(data);
+    let products = await this.getProducts();
     if (products.some((product) => product.id === id)) {
       const productoBuscado = products.find((product) => product.id === id);
       return console.log(`Aqui está el producto buscado con el id ${id}: `, productoBuscado);
@@ -72,27 +80,27 @@ export default class ProductManager {
       let nuevoArray = arraydeproductos.filter((producto) => producto.id != id);
       this.products = nuevoArray;
       console.log(`El producto con id ${id} ha sido eliminado`);
-      await fs.writeFile(this.PATH, JSON.stringify(nuevoArray), 'utf-8')
+      this.jsonSave(nuevoArray);
     }
   }
   updateProduct = async ({id, ...producto }) => {
     await this.deleteProduct(id);
     let arrayProductos = await this.getProducts() ;
     let arrayModificado = [{id, ...producto}, ...arrayProductos];
-    await fs.writeFile(this.PATH, JSON.stringify(arrayModificado, null, "\t"))
+    this.jsonSave(arrayModificado);
   };
 }
 
-  // let productManager = new ProductManager();
+  let productManager = new ProductManager();
 
-//   await productManager.addProduct(
-//     "Toalla",
-//     "Sirve para secarse",
-//     20,
-//     "Ruta de Img",
-//     "H2B1",
-//     10
-//   );
+  // await productManager.addProduct(
+  //   "Toalla",
+  //   "Sirve para secarse",
+  //   20,
+  //   "Ruta de Img",
+  //   "H2B1",
+  //   10
+  // );
 //   await productManager.addProduct("Toalla de manos", 20, "Ruta de Img", "H2B1", 10);
 //   await productManager.addProduct(
 //     "Mesa",
@@ -111,9 +119,9 @@ export default class ProductManager {
 //     "H4F1",
 //     "80"
 //   );
-//   await productManager.getProductsById(2);
-//   await productManager.getProductsById(3);
-//   await productManager.deleteProduct(2);
+  // await productManager.getProductsById(2);
+  // await productManager.getProductsById(20);
+  // await productManager.deleteProduct(20);
 //   console.log(await productManager.getProducts());
 //   await productManager.addProduct(
 //     "Mesa",
