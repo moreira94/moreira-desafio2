@@ -15,11 +15,11 @@ app.use('/upload-file', uploader.single('myFile'), (req, res) => {
     if(!req.file) {
         return res.send('No se pudo subir el archivo')
     }
-    res.send ('Archivo subido con éxito')
+    res.status(200).send ('Archivo subido con éxito')
 })
 
 app.get('/', (req, res) => {
-    res.send('Bienvenido al administrador de productos');
+    res.status(200).send('Bienvenido al administrador de productos');
 }); 
 
 app.use('/api/products', productsRouter);

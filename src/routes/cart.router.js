@@ -8,43 +8,56 @@ let productManager = new ProductManager();
 let products = await productManager.getProducts();
 
 router.get("/", async (req, res) => {
-  let arrayDeCarritos = await cartManager.getCarts();
-  return res.send(arrayDeCarritos);
+  try {
+    let arrayDeCarritos = await cartManager.getCarts();
+    return res.status(200).send(arrayDeCarritos);
+  } catch {
+    return res.status(404).send("Página no encontrada");
+  }
 });
 
 router.post("/", async (req, res) => {
-  let carts = await cartManager.getCarts();
-  if (carts.length === 0) {
-    const newCart = {
-      id: 1,
-      products: [],
-    };
-    carts.push(newCart);
-    cartManager.jsonSave(carts);
-  } else {
-    let iDGenerator = (await carts.at(-1).id) + 1;
-    const newCart = {
-      id: iDGenerator,
-      products: [],
-    };
-    carts.push(newCart);
-    cartManager.jsonSave(carts);
+  try {
+    let carts = await cartManager.getCarts();
+    if (carts.length === 0) {
+      const newCart = {
+        id: 1,
+        products: [],
+      };
+      carts.push(newCart);
+      cartManager.jsonSave(carts);
+    } else {
+      let iDGenerator = (await carts.at(-1).id) + 1;
+      const newCart = {
+        id: iDGenerator,
+        products: [],
+      };
+      carts.push(newCart);
+      cartManager.jsonSave(carts);
+    }
+    console.log(carts);
+    res.status(200).send("El cart se ha creado con exito");
+  } catch {
+    return res.status(400).send("No se pudo crear el carrito");
   }
-  console.log(carts);
-  res.status(200).send("El cart se ha creado con exito");
 });
 
 router.get("/:cid", async (req, res) => {
-  let carts = await cartManager.getCarts();
-  const { cid } = req.params;
-  const cartById = carts.find((cart) => cart.id === parseInt(cid));
-  if (!cartById) return res.send(`El Cart con el id ${cid} no existe`);
+  try {
+    let carts = await cartManager.getCarts();
+    const { cid } = req.params;
+    const cartById = carts.find((cart) => cart.id === parseInt(cid));
+    if (!cartById) return res.send(`El Cart con el id ${cid} no existe`);
 
-  res.send(cartById);
+    res.status(200).send(cartById);
+  } catch {
+    return res.status(404).send(`el cart con el ${cid} no existe`);
+  }
 });
 
 router.post("/:cid/products/:pid", async (req, res) => {
-  let carts = await cartManager.getCarts();
+    try {
+        let carts = await cartManager.getCarts();
   const { cid, pid } = req.params;
   const cartById = carts.find((cart) => cart.id === parseInt(cid));
   if (!cartById)
@@ -72,6 +85,11 @@ router.post("/:cid/products/:pid", async (req, res) => {
   }
   res.status(200).send("El producto se ha agregado con éxito");
   console.log();
+    }
+    catch {
+        res.status(400).send('La ruta esta equivocada')
+    }
+  
 });
 
 export default router;
