@@ -16,7 +16,8 @@ router.get('/', async (req, res) => {
     res.send(nuevoArray)
 })
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    let products = await productManager.getProducts()
     const {title, description, code, price, stock, category, thumbnails} = req.body;
 
     let iDGenerator = products.at(-1).id+1;
@@ -43,7 +44,8 @@ router.post('/', (req, res) => {
     res.send({status: 'success', payload: arrayNuevo})
 })
 
-router.get('/:pid', (req, res) => {
+router.get('/:pid', async (req, res) => {
+    let products = await productManager.getProducts();
     const { pid } = req.params
     const productById = products.find(product => product.id === parseInt(pid))
     if (!productById) return res.send(`El producto con el id ${pid} no existe`);
@@ -52,7 +54,8 @@ router.get('/:pid', (req, res) => {
     console.log(productById);
 })
 
-router.put('/:pid', (req, res) => {
+router.put('/:pid', async (req, res) => {
+    let products = await productManager.getProducts();
     const { pid } = req.params;
     const {title, description, price, thumbnails, code, stock, category} = req.body;
     const productToUpdate = {
@@ -75,7 +78,8 @@ router.put('/:pid', (req, res) => {
     res.send({status: 'success', payload: productToUpdate})
 })
 
-router.delete('/:pid', (req, res) => {
+router.delete('/api/products/:pid', async (req, res) => {
+    let products = await productManager.getProducts();
     const { pid } = req.params;
     const productsResult = products.filter(product => product.id != parseInt(pid));
 
