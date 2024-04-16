@@ -21,4 +21,11 @@ router.get('/realtimeproducts', (req, res) => {
 
     }  )})
 
+    router.get('/chat', (req, res) => {
+        // const {socketServer} = req;
+        res.render('chat', {
+
+        })
+    })
+
 export default router; 
