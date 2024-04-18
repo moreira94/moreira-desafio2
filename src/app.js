@@ -7,8 +7,9 @@ import handlebars from 'express-handlebars';
 import { Server } from 'socket.io';
 
 const app = express();
+const PORT = process.env.PORT || 8080
 
-const httpServer = app.listen(8080, err => {
+const httpServer = app.listen(PORT, err => {
     if(err) console.log(err);
     console.log('Server escuchando en puerto 8080');
 })

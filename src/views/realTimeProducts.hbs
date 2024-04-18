@@ -12,26 +12,24 @@
             {{/each}}
         </div>
         <div>
-            <form action="">
-                <h1>Agregar Producto:</h1>
-                <div class="form-input">
-                    <input type="text" placeholder="Ingrese el titulo" id="title" name="title" required />
-                    <input type="number" placeholder="Ingrese el precio" id="price" name="price" required>
-                    <input type="number" placeholder="Ingrese código" id="code" name="code" required>
-                    <input type="number" placeholder="Ingrese stock" id="stock" name="stock" required>
-                    <input placeholder="Agregue una descripción" id="description" name="description" required></input>
-                </div>
-                <div class="submit">
-                    <button type="submit">Agregar producto</button>
-                </div>
-                </form>
-                <form>
+            <h1>Agregar Producto:</h1>
+            <form method="post" id="agregarForm" action="http://localhost:8080/api/products/"></form>
+            <input type="text" placeholder="Ingrese el titulo" id="title" name="title" required />
+            <input type="number" placeholder="Ingrese el precio" id="price" name="price" required>
+            <input type="text" placeholder="Ingrese código" id="code" name="code" required>
+            <input type="number" placeholder="Ingrese stock" id="stock" name="stock" required>
+            <input placeholder="Agregue una descripción" id="description" name="description" required></input>
+            <div class="submit">
+                <button type="submit" onclick="agregar(event)" id="botonAgregar">Agregar producto</button>
+            </div>
+            </form>
+            <form>
                 <h1>Borrar Producto:</h1>
                 <div class="form-input">
                     <input type="number" placeholder="Ingrese el id" id="id" name="id" required>
                 </div>
                 <div class="submit">
-                    <button type="submit">Borrar producto</button>
+                    <button type="submit" onclick="" id="delete">Borrar producto</button>
                 </div>
 
             </form>
@@ -43,4 +41,4 @@
 
 </main>
 <script src="/socket.io/socket.io.js"></script>
-<script src="/js/realTimeProducts.js"></script>
+<script type="module" src="/js/realTimeProducts.js"></script>
