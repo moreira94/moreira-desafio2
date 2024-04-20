@@ -55,6 +55,11 @@ button {
     width: 180px;
 }
 
+.form {
+    display: flex;
+    justify-content: center;
+}
+
 .form-input {
     display: flex;
     justify-content: center;

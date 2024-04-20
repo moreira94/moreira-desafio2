@@ -13,14 +13,16 @@
         </div>
         <div>
             <h1>Agregar Producto:</h1>
-            <form method="post" id="agregarForm" action="http://localhost:8080/api/products/"></form>
+            <form method="post" id="agregarForm" action="http://localhost:8080/api/products/">
+            <div class="form">
             <input type="text" placeholder="Ingrese el titulo" id="title" name="title" required />
             <input type="number" placeholder="Ingrese el precio" id="price" name="price" required>
             <input type="text" placeholder="Ingrese código" id="code" name="code" required>
             <input type="number" placeholder="Ingrese stock" id="stock" name="stock" required>
             <input placeholder="Agregue una descripción" id="description" name="description" required></input>
+            </div>
             <div class="submit">
-                <button type="submit" onclick="agregar(event)" id="botonAgregar">Agregar producto</button>
+                <button type="submit" onclick="event" id="botonAgregar">Agregar producto</button>
             </div>
             </form>
             <form>
@@ -42,3 +44,34 @@
 </main>
 <script src="/socket.io/socket.io.js"></script>
 <script type="module" src="/js/realTimeProducts.js"></script>
+<script>
+    const socket = io();
+
+    socket.on('update-products', (products) => {
+        const productContainer = document.querySelector('.product-container');
+        productContainer.innerHTML = '';
+
+        products.forEach((product) => {
+            const productDiv = document.createElement('div');
+            productDiv.classList.add('rtproduct');
+
+            const title = document.createElement('h3');
+            title.textContent = product.title;
+            productDiv.appendChild(title);
+
+            const id = document.createElement('p');
+            id.textContent = `Id: ${product.id}`;
+            productDiv.appendChild(id);
+
+            const price = document.createElement('p');
+            price.textContent = `Precio: $${product.price}`;
+            productDiv.appendChild(price);
+
+            const stock = document.createElement('p');
+            stock.textContent = `Stock: ${product.stock}`;
+            productDiv.appendChild(stock);
+
+            productContainer.appendChild(productDiv);
+        });
+    });
+</script> 

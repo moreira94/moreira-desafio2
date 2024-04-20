@@ -33,14 +33,14 @@ export default class ProductManager {
     }
   };
 
-  addProduct = async (title, description, price, thumbnail, code, stock) => {
+  addProduct = async ({title, price, code, stock, description, thumbnail}) => {
     try {
       let products = await this.getProducts();
       let fileExists = await fs.stat(this.PATH);
       if (!fileExists) {
         await fs.writeFile(this.PATH, JSON.stringify([]));
       }
-    if (!title || !description || !price || !thumbnail || !code || !stock) {
+    if (!title || !price || !code || !stock || !description || !thumbnail ) {
       return await console.log("Asegurate de incluir todas las propiedades en el objeto!");
     } 
     
@@ -50,8 +50,6 @@ export default class ProductManager {
       let iDGenerator = products.at(-1).id;
       this.id = iDGenerator+1;
       let nuevoProducto = { title, description, price, thumbnail, code, stock, id:this.id };
-      // this.products.push(nuevoProducto);
-      // await fs.writeFile('./products.JSON', JSON.stringify(this.products), 'utf-8' )
       const arrayModificado = [...products, nuevoProducto];
       this.jsonSave(arrayModificado);
       console.log("Se agrego el siguiente producto: ", nuevoProducto);
